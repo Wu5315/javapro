@@ -2,14 +2,24 @@ package com.wu.work3a;
 
 import com.sun.xml.internal.ws.wsdl.writer.document.StartWithExtensionsType;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.awt.SystemColor.menu;
+
 public class Main {
     public static List<Mybook> mybooks = new ArrayList<>();
+    public static File file  = new File("d:/books");
     public static void main(String[] args) {
-        menu();
+        if(!file.exists()){
+            inputData(mybooks);
+            save();
+        }else{
+            read();
+        }
+        menu1();
     }
     public static void inputData(List<Mybook> books){
         System.out.println("请输入初始化添加的书本数：");
@@ -20,7 +30,6 @@ public class Main {
             mybooks.add(mybook);
         }
         System.out.println("初始化完成，进入主界面");
-        menu1();
     }
     public static void print(List<Mybook> books){
         for (int i = 0;i < mybooks.size();i++){
@@ -52,6 +61,7 @@ public class Main {
             if(mybook.getName().equals(name)){
                 mybooks.remove(i);
                 System.out.println("此书删除成功。");
+                save();
                 menu1();
                 return;
             }
@@ -79,6 +89,7 @@ public class Main {
             mybooks.add(mybook);
         }
         System.out.println("添加完成");
+        save();
         menu1();
     }
     public static void menu1(){
@@ -108,19 +119,67 @@ public class Main {
                 break;
         }
     }
-    public static void menu(){
-        System.out.println("是否初始化图书列表（请输入1或2）");
-        System.out.println("1.初始化");
-        System.out.println("2.跳过");
-        Scanner scanner = new Scanner(System.in);
-        int a =scanner.nextInt();
-        if(a == 1){
-            inputData(mybooks);
-        }else if(a == 2){
-            menu1();
-        }else{
-            System.out.println("输入错误，请重新输入：");
-            menu();
+//    public static void menu(){
+//        System.out.println("是否初始化图书列表（请输入1或2）");
+//        System.out.println("1.初始化");
+//        System.out.println("2.跳过");
+//        Scanner scanner = new Scanner(System.in);
+//        int a =scanner.nextInt();
+//        if(a == 1){
+//            inputData(mybooks);
+//        }else if(a == 2){
+//            menu1();
+//        }else{
+//            System.out.println("输入错误，请重新输入：");
+//            menu();
+//        }
+//    }
+    public static void save(){
+        OutputStream outputStream = null;
+        ObjectOutputStream objectOutputStream = null;
+        try {
+            outputStream = new FileOutputStream(file);
+            objectOutputStream = new ObjectOutputStream(outputStream);
+            objectOutputStream.writeObject(mybooks);
+            objectOutputStream.flush();
+            outputStream.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(objectOutputStream != null)
+                    objectOutputStream.close();
+                if(outputStream != null)
+                    outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public static void read() {
+        InputStream inputStream = null;
+        ObjectInputStream objectInputStream = null;
+        try {
+            inputStream = new FileInputStream(file);
+            objectInputStream = new ObjectInputStream(inputStream);
+            mybooks = (List<Mybook>) objectInputStream.readObject();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (objectInputStream != null)
+                    objectInputStream.close();
+                if (inputStream != null)
+                    inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

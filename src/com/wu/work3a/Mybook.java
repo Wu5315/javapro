@@ -1,11 +1,15 @@
 package com.wu.work3a;
 
-public class Mybook {
+import java.io.Serializable;
+
+public class Mybook implements Serializable {
+    private static final long serialVersionUID = 222L;
     private String name;
     private Double price;
     private String press;
     private String author;
     private String bookISBN;
+    public Mybook(){}
 
     public Mybook(String name, Double price, String press, String author, String bookISBN) {
         this.name = name;
