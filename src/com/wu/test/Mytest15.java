@@ -4,7 +4,7 @@ import java.io.*;
 
 public class Mytest15 {
     public static void main(String[] args) {
-        //File
+//        File
 //        File file = new File("d:/a/b");
 //        file.exists();//文件是否存在
 //        file.mkdirs();//创建全部目录
@@ -17,7 +17,7 @@ public class Mytest15 {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-        //字节输出流
+//        字节输出流
 //        File file = new File("d:/student");
 //        OutputStream outputStream = null;
 //        try {
@@ -62,6 +62,53 @@ public class Mytest15 {
 //                e.printStackTrace();
 //            }
 //        }
-
+        //字符输入流
+//        File file = new File("d:/student");
+//        Reader reader = null;
+////        char[] a= new char[10];
+//        BufferedReader bufferedReader = null;
+//        try {
+//            reader = new FileReader(file);
+//            bufferedReader = new BufferedReader(reader);
+//            String a = bufferedReader.readLine();
+//            while(a!=null){
+//                System.out.println(a);
+//                a = bufferedReader.readLine();
+//            }
+////            int b = reader.read(a);
+////            while(b != -1){
+////                System.out.println(new String(a,0,b));
+////                b = reader.read(a);
+////            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }finally {
+//            try {
+//                if(bufferedReader != null)
+//                    bufferedReader.close();
+//                if(reader != null)
+//                    reader.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+        //字符输出流
+        File file = new File("d:/student");
+        Writer writer = null;
+        try {
+            writer = new FileWriter(file,true);//输出流一定注意，是覆盖还是追加
+            writer.write("\nasdshuhfdufhsud");
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
