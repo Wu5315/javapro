@@ -1,9 +1,12 @@
 package com.wu.pojo;
 
+import com.wu.util.Column;
+
 public class Student {
     private Integer Sno;
     private String Sname;
-    private String Ssex;
+    @Column("Ssex")
+    private String Sex;
     private Integer Sage;
     private String Sdept;
 
@@ -12,7 +15,7 @@ public class Student {
 
     public Student(String sname, String ssex, Integer sage, String sdept) {
         Sname = sname;
-        Ssex = ssex;
+        Sex = ssex;
         Sage = sage;
         Sdept = sdept;
     }
@@ -20,7 +23,7 @@ public class Student {
     public Student(Integer sno, String sname, String ssex, Integer sage, String sdept) {
         Sno = sno;
         Sname = sname;
-        Ssex = ssex;
+        Sex = ssex;
         Sage = sage;
         Sdept = sdept;
     }
@@ -42,11 +45,11 @@ public class Student {
     }
 
     public String getSsex() {
-        return Ssex;
+        return Sex;
     }
 
     public void setSsex(String ssex) {
-        Ssex = ssex;
+        Sex = ssex;
     }
 
     public Integer getSage() {
@@ -70,7 +73,7 @@ public class Student {
         return "Student{" +
                 "Sno=" + Sno +
                 ", Sname='" + Sname + '\'' +
-                ", Ssex='" + Ssex + '\'' +
+                ", Ssex='" + Sex + '\'' +
                 ", Sage=" + Sage +
                 ", Sdept='" + Sdept + '\'' +
                 '}';
