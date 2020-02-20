@@ -50,17 +50,28 @@ public class CourseDao implements IcourseService {
     }
 
     @Override
-    public int add() {
+    public int add(Course course) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(url,username,password);
+            pstmt = con.prepareStatement("insertinsert into Course(Cno,Cname,Period,Ccredit) values(?,?,?,?) ");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 
     @Override
-    public int update() {
+    public int update(Course course) {
         return 0;
     }
 
     @Override
-    public int del() {
+    public int del(int Cno) {
         return 0;
     }
 }

@@ -6,6 +6,16 @@ public class Course {
     private Integer Period;
     private Integer Ccredit;
 
+    public Course() {
+    }
+
+    public Course(Integer cno, String cname, Integer period, Integer ccredit) {
+        Cno = cno;
+        Cname = cname;
+        Period = period;
+        Ccredit = ccredit;
+    }
+
     public Integer getCno() {
         return Cno;
     }

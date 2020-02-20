@@ -42,4 +42,18 @@ public class CourseWeb {
             System.out.println(i);
         }
     }
+
+    public void add(Scanner scanner){
+        System.out.println("请输入要添加的课程号：");
+        int Cno = scanner.nextInt();
+        System.out.println("请输入要添加的课程名称：");
+        String Cname = scanner.next();
+        System.out.println("请输入本课程学时：");
+        int Period = scanner.nextInt();
+        System.out.println("请输入本课程学分：");
+        int Ccredit = scanner.nextInt();
+        Course course = new Course(Cno,Cname,Period,Ccredit);
+        //调用seriver添加方法
+        courseService.add(course);
+    }
 }

@@ -13,17 +13,17 @@ public class CourseService implements IcourseService{
     }
 
     @Override
-    public int add() {
+    public int add(Course course) {
+        return courseDao.add(course);
+    }
+
+    @Override
+    public int update(Course course) {
         return 0;
     }
 
     @Override
-    public int update() {
-        return 0;
-    }
-
-    @Override
-    public int del() {
+    public int del(int Cno) {
         return 0;
     }
 }

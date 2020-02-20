@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IcourseService {
     List<Course> query();
-    int add();
-    int update();
-    int del();
+    int add(Course course);
+    int update(Course course);
+    int del(int Cno);
 }
